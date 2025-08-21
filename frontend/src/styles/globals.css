@@ -1,0 +1,65 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  height: 100%;
+}
+
+/* Personalizar scrollbar */
+/*
+Personaliza la barra de desplazamiento en Chrome, Edge y Safari.
+width: 8px → estrecha.
+track → fondo de la scrollbar.
+thumb → el "agarrador" que se mueve.
+hover → color cambia al pasar el mouse.
+*/
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #374151;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #6b7280;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+/* Animaciones personalizadas Define animación que aparece suavemente desde abajo.*/
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Clases de utilidad personalizadas aplica transición suave a todos los cambios (colores, tamaños, etc.).*/
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.bg-gray-750 {
+  background-color: #3f4954;
+}
