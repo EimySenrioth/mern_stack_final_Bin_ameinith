@@ -8,19 +8,66 @@
   border-right: 1px solid #2d3748;
 }
 
-.sidebar-header {
-  padding: 1rem;
-  border-bottom: 1px solid #2d3748;
-}
-
-.sidebar-history {
-  padding: 1rem;
-  border-bottom: 1px solid #2d3748;
-}
-
 .sidebar-history-title {
   font-size: 1rem;
   color: #a0aec0;
+  font-weight: 600;
   margin-bottom: 0.5rem;
-  font-weight: bold;
+  margin-left: 1rem;
+  margin-top: 1rem;
+}
+
+.chat-history {
+  /* tu historial de chats */
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 0 0.5rem;
+  overflow-y: auto;
+}
+
+.sidebar-spacer {
+  flex: 1;
+}
+
+.sidebar-user {
+  padding: 1rem;
+  border-top: 1px solid #2d3748;
+  background: #23272f;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.sidebar-user-name {
+  font-size: 1rem;
+  font-weight: 500;
+}
+.sidebar-user-status {
+  font-size: 0.85rem;
+  color: #a0aec0;
+}
+
+/* Estilo para cada botón del historial */
+.sidebar-history-item {
+  width: 100%;
+  text-align: left;
+  justify-content: flex-start;
+  background: none;
+  color: #e2e8f0;
+  font-size: 1rem;
+  padding: 0.6rem 0.8rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s;
+  font-weight: 400;
+  white-space: normal;
+  word-break: break-word;
+  display: flex;
+  align-items: center;
+}
+
+.sidebar-history-item:hover,
+.sidebar-history-item.active {
+  background: #2d3748;
 }

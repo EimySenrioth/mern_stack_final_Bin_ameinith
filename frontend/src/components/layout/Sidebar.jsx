@@ -8,6 +8,7 @@ const Sidebar = () => {
   const { isSidebarOpen, clearConversation } = useChatContext();
   const [history, setHistory] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [reloadHistory, setReloadHistory] = useState(0);
 
   useEffect(() => {
     if (isSidebarOpen) {
@@ -17,15 +18,18 @@ const Sidebar = () => {
         setLoading(false);
       });
     }
-  }, [isSidebarOpen]);
+  }, [isSidebarOpen, reloadHistory]);
 
   if (!isSidebarOpen) return null;
 
   return (
     <aside className="sidebar-container">
       <div className="sidebar-header">
-        <Button 
-          onClick={clearConversation}
+        <Button
+          onClick={() => {
+            clearConversation();
+            setReloadHistory(prev => prev + 1);
+          }}
           variant="outline"
           className="w-full justify-start gap-3"
         >
@@ -44,15 +48,19 @@ const Sidebar = () => {
             <div className="sidebar-history-empty">Sin conversaciones anteriores</div>
           ) : (
             history.map((conv, idx) => (
-              <div key={conv._id || idx} className="sidebar-history-item">
+              <Button
+                key={conv._id || idx}
+                className="sidebar-history-item"
+                variant="ghost"
+              >
                 {conv.messages[0]?.text?.slice(0, 60) || 'Conversación sin mensajes'}
-              </div>
+              </Button>
             ))
           )}
         </div>
       </div>
+      <div className="sidebar-spacer" />
       <div className="sidebar-user">
-        <div className="sidebar-user-avatar">U</div>
         <div>
           <div className="sidebar-user-name">Usuario</div>
           <div className="sidebar-user-status">Memoria guardada llena</div>
