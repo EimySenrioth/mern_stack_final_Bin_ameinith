@@ -1,14 +1,29 @@
-import Button from '../ui/Button';
+import { useEffect, useState } from 'react';
 import { useChatContext } from '../../context/ChatContext/ChatContext';
+import { getConversations } from '../../services/api/conversationApi';
+import Button from '../ui/Button';
+import '../../styles/Sidebar.css';
 
 const Sidebar = () => {
   const { isSidebarOpen, clearConversation } = useChatContext();
+  const [history, setHistory] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (isSidebarOpen) {
+      setLoading(true);
+      getConversations().then(data => {
+        setHistory(data);
+        setLoading(false);
+      });
+    }
+  }, [isSidebarOpen]);
 
   if (!isSidebarOpen) return null;
 
   return (
-    <div className="w-64 bg-gray-800 flex flex-col transition-all duration-300">
-      <div className="p-4">
+    <aside className="sidebar-container">
+      <div className="sidebar-header">
         <Button 
           onClick={clearConversation}
           variant="outline"
@@ -20,30 +35,30 @@ const Sidebar = () => {
           Nueva conversación
         </Button>
       </div>
-      
-      {/* Chat History - Sinfuncionalidad*/}
-      <div className="flex-1 overflow-y-auto px-4">
-        <div className="text-sm text-gray-400 mb-2">Historial de conversaciones</div>
-        <div className="space-y-2">
-          <div className="text-sm text-gray-500 italic">
-            Sin conversaciones anteriores
-          </div>
+      <div className="sidebar-history">
+        <div className="sidebar-history-title">Historial de conversaciones</div>
+        <div className="sidebar-history-list">
+          {loading ? (
+            <div className="sidebar-history-empty">Cargando...</div>
+          ) : history.length === 0 ? (
+            <div className="sidebar-history-empty">Sin conversaciones anteriores</div>
+          ) : (
+            history.map((conv, idx) => (
+              <div key={conv._id || idx} className="sidebar-history-item">
+                {conv.messages[0]?.text?.slice(0, 60) || 'Conversación sin mensajes'}
+              </div>
+            ))
+          )}
         </div>
       </div>
-
-      {/* Emulando la UI del chatgpt */}
-      <div className="p-4 border-t border-gray-700">
-        <div className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
-            <span className="text-sm font-medium">U</span>
-          </div>
-          <div>
-            <div className="text-sm font-medium">Usuario</div>
-            <div className="text-xs text-gray-400">Memoria guardada llena</div>
-          </div>
+      <div className="sidebar-user">
+        <div className="sidebar-user-avatar">U</div>
+        <div>
+          <div className="sidebar-user-name">Usuario</div>
+          <div className="sidebar-user-status">Memoria guardada llena</div>
         </div>
       </div>
-    </div>
+    </aside>
   );
 };
 

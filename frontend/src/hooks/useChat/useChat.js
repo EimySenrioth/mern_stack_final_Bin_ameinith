@@ -7,34 +7,12 @@ import {
   isValidMessage 
 } from '../../utils/helpers/messageHelpers';
 import { ERROR_MESSAGES } from '../../utils/constants/apiConstants';
-
-/*
-React hooks:
-useState → para manejar estados (messages y isLoading).
-useCallback → memoiza funciones para que no se redefinan en cada render.
-useOllama → hook para enviar mensajes a Ollama.
-messageHelpers → funciones que crean distintos tipos de mensajes:
-createUserMessage → mensaje enviado por el usuario.
-createBotMessage → mensaje recibido del bot.
-createErrorMessage → mensaje de error.
-isValidMessage → valida que el mensaje no esté vacío o sea inválido.
-ERROR_MESSAGES → constantes con mensajes de error predefinidos.
-*/
+import { saveConversation } from '../../services/api/conversationApi'; // <-- Importa la función
 
 export const useChat = () => {
-  //messages → array de todos los mensajes en la conversación.
-  //isLoading → indica si el bot está respondiendo
   const [messages, setMessages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const { sendMessage: sendOllamaMessage } = useOllama();
-
-  /*
-  Validación → no se envía si el mensaje es inválido o si ya se está cargando.
-  Crear mensaje de usuario → se agrega a messages.
-  Activar loading → para deshabilitar input mientras llega respuesta del bot.
-  Llamada a la API → Ollama.
-
-  */
 
   const sendMessage = useCallback(async (inputValue) => {
     if (!isValidMessage(inputValue) || isLoading) return;
@@ -58,9 +36,13 @@ export const useChat = () => {
     }
   }, [isLoading, sendOllamaMessage]);
 
+  // Guarda el historial antes de limpiar
   const clearConversation = useCallback(() => {
+    if (messages.length > 0) {
+      saveConversation(messages);
+    }
     setMessages([]);
-  }, []);
+  }, [messages]);
 
   const addMessage = useCallback((message) => {
     setMessages(prev => [...prev, message]);

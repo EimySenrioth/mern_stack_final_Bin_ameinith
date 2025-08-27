@@ -4,6 +4,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
+import conversationRoutes from './routes/conversationRoutes.js';
 
 dotenv.config();
 
@@ -21,6 +22,7 @@ app.use(express.urlencoded({ limit: '30mb', extended: true }));
 app.get('/', (req, res) => {
   res.json({ message: 'MERN Stack API funcionando correctamente!' });
 });
+app.use('/api/conversations', conversationRoutes);
 
 // MongoDB Connection
 const connectDB = async () => {

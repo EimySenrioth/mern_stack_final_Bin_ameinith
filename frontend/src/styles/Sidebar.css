@@ -1,0 +1,26 @@
+.sidebar-container {
+  width: 260px;
+  background: #23272f;
+  color: #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  border-right: 1px solid #2d3748;
+}
+
+.sidebar-header {
+  padding: 1rem;
+  border-bottom: 1px solid #2d3748;
+}
+
+.sidebar-history {
+  padding: 1rem;
+  border-bottom: 1px solid #2d3748;
+}
+
+.sidebar-history-title {
+  font-size: 1rem;
+  color: #a0aec0;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
