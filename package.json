@@ -8,11 +8,17 @@
     "server": "cd backend && npm run dev",
     "client": "cd frontend && npm run dev",
     "install-server": "cd backend && npm install",
-    "install-client": "cd frontend && npm install", 
+    "install-client": "cd frontend && npm install",
     "install-all": "npm run install-server && npm run install-client",
     "build": "cd frontend && npm run build"
   },
-  "keywords": ["mern", "react", "nodejs", "mongodb", "express"],
+  "keywords": [
+    "mern",
+    "react",
+    "nodejs",
+    "mongodb",
+    "express"
+  ],
   "author": "Bin Ameinith",
   "license": "MIT",
   "devDependencies": {
