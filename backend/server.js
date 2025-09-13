@@ -7,6 +7,7 @@ import dotenv from 'dotenv';
 import conversationRoutes from './routes/conversationRoutes.js';
 import authRoutes from './routes/auth.js';
 import userRoutes from './routes/user.js';
+import errorHandler from './middleware/errorHandler.js';
 
 dotenv.config();
 
@@ -27,6 +28,7 @@ app.get('/', (req, res) => {
 app.use('/api/conversations', conversationRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
+app.use(errorHandler);
 
 // MongoDB Connection
 const connectDB = async () => {
