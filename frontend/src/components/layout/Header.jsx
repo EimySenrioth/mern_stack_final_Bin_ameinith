@@ -7,7 +7,7 @@ useChatContext →  Aquí se usa para manejar
 la apertura/cierre de la sidebar.
 */
 
-const Header = () => {
+const Header = ({ onObtenerPlus }) => {
   const { toggleSidebar } = useChatContext();
 
   return (
@@ -26,7 +26,7 @@ const Header = () => {
         <h1 className="text-lg font-semibold">ChatGPT</h1>
       </div>
       
-      <Button variant="primary" size="md">
+      <Button onClick={onObtenerPlus}>
         Obtener Plus
       </Button>
     </header>

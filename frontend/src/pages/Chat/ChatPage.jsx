@@ -4,11 +4,11 @@ import ChatInput from '../../components/chat/ChatInput';
 import WelcomeScreen from '../../components/chat/WelcomeScreen';
 import { useChatContext } from '../../context/ChatContext/ChatContext';
 
-const ChatPage = () => {
+const ChatPage = ({ onObtenerPlus }) => {
   const { messages, isLoading, sendMessage } = useChatContext();
 //condición ? valorSiTrue : valorSiFalse
   return (
-    <MainLayout>
+    <MainLayout onObtenerPlus={onObtenerPlus}>
       <div className="flex flex-col h-full">
         {/* Messages Area */}
         <div className="flex-1 overflow-y-auto">

@@ -2,7 +2,7 @@ import Header from './Header';
 import Sidebar from './Sidebar';
 import { useChatContext } from '../../context/ChatContext/ChatContext';
 
-const MainLayout = ({ children }) => {
+const MainLayout = ({ children, onObtenerPlus }) => {
   const { isSidebarOpen } = useChatContext();
 
   return (
@@ -10,7 +10,7 @@ const MainLayout = ({ children }) => {
       <Sidebar />
       
       <div className="flex-1 flex flex-col">
-        <Header />
+        <Header onObtenerPlus={onObtenerPlus} />
         
         <main className="flex-1 overflow-hidden">
           {children}

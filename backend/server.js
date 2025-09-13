@@ -5,6 +5,8 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
 import conversationRoutes from './routes/conversationRoutes.js';
+import authRoutes from './routes/auth.js';
+import userRoutes from './routes/user.js';
 
 dotenv.config();
 
@@ -23,6 +25,8 @@ app.get('/', (req, res) => {
   res.json({ message: 'MERN Stack API funcionando correctamente!' });
 });
 app.use('/api/conversations', conversationRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/user', userRoutes);
 
 // MongoDB Connection
 const connectDB = async () => {
