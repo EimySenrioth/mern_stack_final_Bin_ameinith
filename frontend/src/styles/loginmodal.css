@@ -85,3 +85,20 @@
   text-align: left;
 }
 
+.modal-logout-btn {
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  border: none;
+  background: #e53e3e;
+  color: #fff;
+  cursor: pointer;
+  margin-top: 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.modal-logout-btn:hover {
+  background: #c53030;
+}
+

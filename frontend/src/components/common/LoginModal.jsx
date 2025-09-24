@@ -70,6 +70,28 @@ const LoginModal = ({ visible, onClose, useZod = false, onLogin }) => {
             Cancelar
           </button>
         </form>
+        {localStorage.getItem('token') && (
+          <button
+            type="button"
+            onClick={() => {
+              localStorage.removeItem('token'); // Elimina el token
+              onLogin(null); // Actualiza el estado en App.jsx
+              onClose(); // Cierra el modal
+            }}
+            style={{
+              marginTop: '1rem',
+              padding: '0.6rem 1.2rem',
+              background: '#e53e3e',
+              color: '#fff',
+              border: 'none',
+              borderRadius: '6px',
+              fontWeight: 'bold',
+              cursor: 'pointer'
+            }}
+          >
+            Salir
+          </button>
+        )}
       </div>
     </div>,
     document.body

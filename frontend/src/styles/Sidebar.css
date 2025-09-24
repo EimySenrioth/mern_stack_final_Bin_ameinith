@@ -8,6 +8,13 @@
   border-right: 1px solid #2d3748;
 }
 
+.sidebar-header {
+  padding-top: 16px;   /* Espacio arriba */
+  padding-bottom: 12px; /* Espacio abajo (opcional) */
+  padding-left: 8px;    /* Espacio lateral (opcional) */
+  padding-right: 8px;
+}
+
 .sidebar-history-title {
   font-size: 1rem;
   color: #a0aec0;

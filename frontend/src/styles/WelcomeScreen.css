@@ -1,0 +1,46 @@
+.welcome-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 1rem;
+  background: rgba(49, 130, 206, 0.15); /* azul transparente */
+  border-radius: 1rem;
+  position: relative;
+}
+
+.arrow-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.arrow {
+  font-size: 2rem;
+  color: #3182ce;
+  animation: bounce 1.2s infinite;
+}
+
+.arrow.arrow2 {
+  font-size: 1.5rem;
+  color: #63b3ed;
+  animation-delay: 0.2s;
+}
+
+.arrow.arrow3 {
+  font-size: 1.2rem;
+  color: #bee3f8;
+  animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0);}
+  50% { transform: translateY(12px);}
+}
